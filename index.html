@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .dv0{
+            width: 1859px ;
+            height: 809px ;
+            display: block;
+            float:left;
+        }
+        .div1{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="dv" style="height: 600px;width: 200px;background-color: #fff000;float: left;"></div>
+    <div class="dv0">
+        <div class="div1" id="div1">
+            <canvas id="canvasMind" height="809" width="1859"></canvas>
+            <ul></ul>
+            <p></p>
+        </div>
+       
+    </div>
+    
+    <script src="./js/chart.js"></script>
+    <script>
+        var chartData = {
+                labels:['1-1','2-1','3-1','4-1','5-1','6-1','1-1','2-1','3-1','4-1','5-1','6-1','1-1','2-1','3-1','4-1','5-1','6-1'],
+                datasets: [{
+                    type: 'line',
+                    label: '充水',
+                    borderColor: 'rgb(0, 123, 111)',
+                    borderWidth: 2,
+                    fill: false,
+                    data: [23,55,66,99,55,44,23,55,66,99,55,44,23,55,66,99,55,40]
+                }, {
+                    type: 'bar',
+                    label: '饮水',
+                    backgroundColor: 'rgb(255, 193, 255)',
+                    data: [23,55,66,99,55,440,23,55,66,99,55,44,23,55,66,99,55,44],
+                    borderColor: 'white',
+                    borderWidth: 2
+                }]
+
+            };
+            
+            var ctx = document.getElementById('canvasMind').getContext("2d"),
+                myLineChart = new Chart(ctx, {
+                    type: "bar",
+                    data: chartData,
+                    options: {
+                        responsive: true,
+                        title: {
+                            display: true,
+                            text: '近15天数据趋势'
+                        },
+                        tooltips: {
+                            mode: 'index',
+                            intersect: true
+                        },
+                        
+                    }
+                });
+            /*
+            document.getElementById
+            document.getElementsByClassName
+            document.getElementsByName
+            document.getElementsByTagName
+            document.querySelector
+            document.querySelectorAll
+
+            childNodes
+            children
+            parentNode
+            previousSibling
+            nextSibling
+            firstChild
+            lastChild
+
+            nodeType            nodeValue               nodeName
+               1                  null                   大写标签
+               3                 文本内容                 #text
+               8                 注释内容                 #comment
+               9                  null                   #document                 
+           
+            */
+            var dv1=document.getElementById('div1');
+            function getMyChildren(ele,tagNam){
+                var ary=[],nodes=ele.childNodes;
+                for(var i=0;i<nodes.length;i++){
+                    var cur=nodes[i];
+                    if(cur.nodeType===1){
+                        // if(tagNam){
+                        //     // if(cur.nodeName.toLowerCase()==tagNam.toLowerCase()){
+                        //     //     ary.push(cur);
+                        //     cur.nodeName.toLowerCase()==tagNam.toLowerCase()?ary.push(cur):''
+                        //     // }
+                        // }else{
+                        //     ary.push(cur);
+                        // }   
+                        tagNam?cur.nodeName.toLowerCase()==tagNam.toLowerCase()?ary.push(cur):'':ary.push(cur);
+                    }
+                }
+                return ary;
+            }
+            console.log(getMyChildren(dv1,''));
+            
+            
+    </script>
+</body>
+</html>
